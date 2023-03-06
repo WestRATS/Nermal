@@ -3,7 +3,7 @@ A web application to help students track their activities
 
 
 ## How to use:
-[WIP]
+# [WIP]
 
 - item one
 - item two
