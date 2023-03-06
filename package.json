@@ -1,0 +1,22 @@
+{
+    "name": "nermal",
+    "author": "RATS",
+    "version": "0.1.0",
+    "homepage": "https://github.com/WestRATS/Nermal",
+    "description": "Activity tracker by students for students",
+    "private": false,
+    "main": "main.js",
+    "scripts": {
+        "xcss": "tailwindcss build -i tailwind.css -o public/styles.css"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WestRats/Nermal.git"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.2.7"
+    },
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}
