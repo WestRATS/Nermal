@@ -7,6 +7,8 @@ import TaskList from "./task-tracking/components/TaskList";
 import TaskFilter from "./task-tracking/components/TaskFilter";
 import categories from "./task-tracking/categories";
 import status from "./task-tracking/status";
+import Navbar from "./task-tracking/components/Navbar";
+
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -31,8 +33,17 @@ function App() {
     ? tasks.filter((t) => t.category === selectedCategory)
     : tasks;
 
+  const handleDone = (id: number) => {
+    setTasks(
+      tasks.map((task) => (task.id == id ? { ...task, status: "done" } : task))
+    );
+  };
+
   return (
     <div>
+      <div>
+        <Navbar></Navbar>
+      </div>
       <div className="mb-5">
         <TaskForm
           onSubmit={(task) =>
@@ -48,6 +59,7 @@ function App() {
       <TaskList
         tasks={visibleTasks}
         onDelete={(id) => setTasks(tasks.filter((t) => t.id != id))}
+        onDone={handleDone}
       ></TaskList>
     </div>
   );

@@ -10,8 +10,9 @@ interface Task {
 interface Props {
   tasks: Task[];
   onDelete: (id: number) => void;
+  onDone : (id:number) => void;
 }
-const TaskList = ({ tasks, onDelete }: Props) => {
+const TaskList = ({ tasks, onDelete, onDone }: Props) => {
   return (
     <div>
       <table className="table table-bordered">
@@ -35,6 +36,12 @@ const TaskList = ({ tasks, onDelete }: Props) => {
                   onClick={() => onDelete(task.id)}
                 >
                   delete
+                </button>
+                <button
+                  className="btn btn-outline-secondary"
+                  onClick={() => onDone(task.id)}
+                >
+                  done
                 </button>
               </td>
             </tr>
