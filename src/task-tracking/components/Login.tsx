@@ -69,6 +69,7 @@ const Login = ({ onSubmit, users }: Props) => {
       localStorage.setItem("authenticated", "true");
       console.log("Login::logged in user", loggedInUser);
       localStorage.setItem("loggedInUser", account.email);
+      console.log("Login::logged in user", localStorage.getItem("loggedInUser"));
       navigate("/");
     } else {
       setInvalidLogin(true);

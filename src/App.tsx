@@ -88,6 +88,8 @@ function App() {
   const handleLogin = (login: { email: string; password: string }) => {
     console.log("APP:: In Handle Login");
     console.log("APP", login);
+    setLoggedInUser(login.email);
+    setauthenticated("true");
     // const { email, password } = login;
 
     // let email = "";

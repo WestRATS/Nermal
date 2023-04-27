@@ -28,17 +28,18 @@ const Signup = ({ onSubmit, users }: Props) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [existingUser, setExistingUser] = useState(false);
+  const [existingUser, setExistingUser] = useState("");
 
   const handleSignup = (signup: { email: string; password: string }) => {
     console.log("Signup ::  handlesignup function");
     const account = users.find((user) => user.email === signup.email);
+    console.log("Signup ::: existingn user ", existingUser);
     if (account) {
-      setExistingUser(true);
-      console.log("Login::account.email", account.email);
+      setExistingUser("true");
+      console.log("Signup::account.email", account.email);
       console.log("Signup:: an existing user");
     } else {
-      setExistingUser(false);
+      setExistingUser("false");
       console.log("Signup:: Not an existing user");
     }
   };
@@ -52,10 +53,15 @@ const Signup = ({ onSubmit, users }: Props) => {
         reset();
       })}
     >
-      {existingUser && (
+      {existingUser == "true" && (
         <div className="alert alert-danger" role="alert">
           The email id you have provided already exists in our database. Try
           again or navigate to login page.
+        </div>
+      )}
+      {existingUser == "false" && (
+        <div className="alert alert-success" role="alert">
+          You signed up. Go to Login.
         </div>
       )}
       <div className="mb-3">
