@@ -88,8 +88,24 @@ function App() {
   const handleLogin = (login: { email: string; password: string }) => {
     console.log("APP:: In Handle Login");
     console.log("APP", login);
-    setLoggedInUser(login.email);
-    setauthenticated("true");
+    // setLoggedInUser(login.email);
+    // setauthenticated("true");
+
+    useEffect(() => {
+      const authenticatedUser = localStorage.getItem("authenticated");
+      if (authenticatedUser == "true") {
+        setauthenticated(authenticatedUser);
+      }
+    }, []);
+
+    useEffect(() => {
+      const authenticatedUserEmail = localStorage.getItem("loggedInUser");
+
+      if (authenticatedUserEmail != null) {
+        setLoggedInUser(authenticatedUserEmail);
+      }
+    }, []);
+
     // const { email, password } = login;
 
     // let email = "";
@@ -143,10 +159,7 @@ function App() {
             path="login"
             element={
               <>
-                <Headers
-                  msg={"You know what to do!!"}
-                  header={"Login"}
-                ></Headers>
+                <Headers msg={"login please"} header={"login"}></Headers>
                 <Login
                   onSubmit={(login) => handleLogin(login)}
                   users={users}
@@ -158,10 +171,7 @@ function App() {
             path="signup"
             element={
               <>
-                <Headers
-                  msg={"Glad you are ready to join us!!"}
-                  header={"Signup"}
-                ></Headers>
+                <Headers msg={"signup please"} header={"signup"}></Headers>
                 <Signup
                   onSubmit={(signup) => handleSignup(signup)}
                   users={users}
@@ -175,8 +185,8 @@ function App() {
               authenticated == "true" ? (
                 <>
                   <Headers
-                    msg={"You know what to do!!"}
-                    header={"CreateTask"}
+                    msg={"create a task here:"}
+                    header={"create task"}
                   ></Headers>
                   <TaskForm
                     onSubmit={(task) =>
