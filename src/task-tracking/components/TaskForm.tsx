@@ -4,6 +4,8 @@ import status from "../status";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import categories from "../categories";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const schema = z.object({
   taskName: z.string().min(2).max(50),
@@ -13,22 +15,33 @@ const schema = z.object({
 
 type TaskFormData = z.infer<typeof schema>;
 
-interface Props{
-    onSubmit: (data: TaskFormData) => void
+interface Props {
+  onSubmit: (data: TaskFormData) => void;
 }
 
-const TaskForm = ({onSubmit}: Props) => {
+const TaskForm = ({ onSubmit }: Props) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<TaskFormData>({ resolver: zodResolver(schema) });
+
+  const [created, setCreated] = useState(false);
+
   return (
-    <form onSubmit={handleSubmit(data => {
-        onSubmit(data)
-        reset()
-    })}>
+    <form
+      onSubmit={handleSubmit((data) => {
+        onSubmit(data);
+        setCreated(true);
+        reset();
+      })}
+    >
+      {created && (
+        <div className="alert alert-success" role="alert">
+          Task has been added.
+        </div>
+      )}
       <div className="mb-3">
         <label htmlFor="taskName" className="form-label">
           task name
