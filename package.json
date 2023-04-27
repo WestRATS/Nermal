@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "engines"": {
+  "engines": {
     "npm" : "8.19.4",
     "node": "16.11.0"
   }
