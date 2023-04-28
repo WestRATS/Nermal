@@ -2,11 +2,10 @@
 A web application to help students track their activities 
 
 
-## How to use:
-# [WIP]
+## How to run it:
+have node js version 16 or 17 installed
+clone project
+npm install
+npm run dev to start web server
+##
 
-- item one
-- item two
-
-1. one
-2. two
