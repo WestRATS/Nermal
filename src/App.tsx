@@ -87,24 +87,34 @@ function App() {
   };
   const handleLogin = (login: { email: string; password: string }) => {
     console.log("APP:: In Handle Login");
-    console.log("APP", login);
-    // setLoggedInUser(login.email);
-    // setauthenticated("true");
+    console.log("APP::login::", login);
+   
+    const authenticatedUser = localStorage.getItem("authenticated");
+    console.log("APP::authenticatedUser::", authenticatedUser);
+    const authenticatedUserEmail = localStorage.getItem("loggedInUser");
+    console.log("APP::authenticatedUserEmail::", authenticatedUserEmail);
+    if (authenticatedUserEmail != null) {
+       setLoggedInUser(authenticatedUserEmail);
+    }
+    if (authenticatedUser != null) {
+       setauthenticated(authenticatedUser);
+    }
+  
 
-    useEffect(() => {
-      const authenticatedUser = localStorage.getItem("authenticated");
-      if (authenticatedUser == "true") {
-        setauthenticated(authenticatedUser);
-      }
-    }, []);
+    // useEffect(() => {
+    //   const authenticatedUser = localStorage.getItem("authenticated");
+    //   if (authenticatedUser == "true") {
+    //     setauthenticated(authenticatedUser);
+    //   }
+    // }, []);
 
-    useEffect(() => {
-      const authenticatedUserEmail = localStorage.getItem("loggedInUser");
+    // useEffect(() => {
+    //   const authenticatedUserEmail = localStorage.getItem("loggedInUser");
 
-      if (authenticatedUserEmail != null) {
-        setLoggedInUser(authenticatedUserEmail);
-      }
-    }, []);
+    //   if (authenticatedUserEmail != null) {
+    //     setLoggedInUser(authenticatedUserEmail);
+    //   }
+    // }, []);
 
     // const { email, password } = login;
 
@@ -147,6 +157,9 @@ function App() {
     // console.log("email", email);
     // setLoggedInUser(email);
   };
+
+  console.log("APP:: loggedinuser-XXXXX", loggedInUser);
+  console.log("APP:: authenticated-XXXXX", authenticated);
 
   return (
     <>
